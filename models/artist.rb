@@ -53,4 +53,12 @@ class Artist
     SqlRunner.run(sql)
   end
 
+  def self.find_by_id(id)
+    sql = "SELECT * FROM artists WHERE id = $1;"
+    values = [id]
+    results = SqlRunner.run(sql, values)
+    artist_hash = results[0]
+    return Artist.new(artist_hash)
+  end
+
 end
